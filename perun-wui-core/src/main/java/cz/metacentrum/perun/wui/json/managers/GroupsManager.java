@@ -1,8 +1,6 @@
 package cz.metacentrum.perun.wui.json.managers;
 
 import com.google.gwt.http.client.Request;
-import com.google.gwt.http.client.RequestBuilder;
-import com.google.gwt.json.client.JSONNumber;
 import cz.metacentrum.perun.wui.json.JsonClient;
 import cz.metacentrum.perun.wui.json.JsonEvents;
 
@@ -55,5 +53,10 @@ public class GroupsManager {
 
 	}
 
+	public static Request getMemberGroups(int memberId, JsonEvents events) {
+		JsonClient client = new JsonClient(true, events);
+		client.put("member", memberId);
+		return client.call(GROUPS_MANAGER + "getMemberGroups");
+	}
 
 }

@@ -18,6 +18,9 @@ public interface PerunProfileTranslation extends PerunTranslation {
 	@DefaultMessage("Virtual organizations")
 	public String menuOrganizations();
 
+	@DefaultMessage("Groups")
+	public String menuGroups();
+
 	@DefaultMessage("My identities")
 	public String menuMyIdentities();
 

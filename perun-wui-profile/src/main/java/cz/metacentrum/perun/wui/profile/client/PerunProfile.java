@@ -16,12 +16,7 @@ import cz.metacentrum.perun.wui.client.utils.Utils;
 import cz.metacentrum.perun.wui.pages.*;
 import cz.metacentrum.perun.wui.profile.client.resources.PerunProfilePlaceTokens;
 import cz.metacentrum.perun.wui.profile.client.resources.PerunProfileResources;
-import cz.metacentrum.perun.wui.profile.pages.IdentitiesPresenter;
-import cz.metacentrum.perun.wui.profile.pages.IdentitiesView;
-import cz.metacentrum.perun.wui.profile.pages.OrganizationsPresenter;
-import cz.metacentrum.perun.wui.profile.pages.OrganizationsView;
-import cz.metacentrum.perun.wui.profile.pages.PersonalPresenter;
-import cz.metacentrum.perun.wui.profile.pages.PersonalView;
+import cz.metacentrum.perun.wui.profile.pages.*;
 
 /**
  * Entry point class and GWTP module for Perun WUI User profile.
@@ -46,6 +41,7 @@ public class PerunProfile extends AbstractPresenterModule implements EntryPoint 
 		bindPresenter(PersonalPresenter.class, PersonalPresenter.MyView.class, PersonalView.class, PersonalPresenter.MyProxy.class);
 		bindPresenter(OrganizationsPresenter.class, OrganizationsPresenter.MyView.class, OrganizationsView.class, OrganizationsPresenter.MyProxy.class);
 		bindPresenter(IdentitiesPresenter.class, IdentitiesPresenter.MyView.class, IdentitiesView.class, IdentitiesPresenter.MyProxy.class);
+		bindPresenter(GroupsPresenter.class, GroupsPresenter.MyView.class, GroupsView.class, GroupsPresenter.MyProxy.class);
 
 		// pre-defined places
 		bindConstant().annotatedWith(DefaultPlace.class).to(PerunProfilePlaceTokens.PERSONAL);

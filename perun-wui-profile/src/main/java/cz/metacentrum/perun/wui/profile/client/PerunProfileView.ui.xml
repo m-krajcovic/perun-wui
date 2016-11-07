@@ -85,18 +85,21 @@
 									<b:AnchorListItem ui:field="personal" icon="USER" iconFixedWidth="true" targetHistoryToken="{placeTokens.getPersonal}" >
 										<ui:text from='{trans.menuMyProfile}'/>
 									</b:AnchorListItem>
-									<!--<b:AnchorListItem ui:field="organizations" icon="BUILDING_O" iconFixedWidth="true" targetHistoryToken="{placeTokens.getOrganizations}">
+									<b:AnchorListItem ui:field="organizations" icon="BUILDING_O" iconFixedWidth="true" targetHistoryToken="{placeTokens.getOrganizations}">
 										<ui:text from='{trans.menuOrganizations}'/>
-									</b:AnchorListItem>-->
-									<!--<b:AnchorListItem ui:field="identities" icon="EYE" iconFixedWidth="true" targetHistoryToken="{placeTokens.getIdentities}">
+									</b:AnchorListItem>
+									<b:AnchorListItem ui:field="groups" icon="BUILDING_O" iconFixedWidth="true" targetHistoryToken="{placeTokens.getGroups}">
+										<ui:text from='{trans.menuGroups}'/>
+									</b:AnchorListItem>
+									<b:AnchorListItem ui:field="identities" icon="EYE" iconFixedWidth="true" targetHistoryToken="{placeTokens.getIdentities}">
 										<ui:text from='{trans.menuMyIdentities}'/>
-									</b:AnchorListItem>-->
-									<!--<b:AnchorListItem ui:field="logins" icon="KEY" iconFixedWidth="true" targetHistoryToken="{placeTokens.getLogins}" >
+									</b:AnchorListItem>
+									<b:AnchorListItem ui:field="logins" icon="KEY" iconFixedWidth="true" targetHistoryToken="{placeTokens.getLogins}" >
 										<ui:text from='{trans.menuLoginsAndPasswords}'/>
 									</b:AnchorListItem>
 									<b:AnchorListItem ui:field="settings" icon="COG" iconFixedWidth="true" targetHistoryToken="{placeTokens.getSettings}">
 										<ui:text from='{trans.menuSettings}'/>
-									</b:AnchorListItem>-->
+									</b:AnchorListItem>
 								</b:NavPills>
 							</b:PanelBody>
 						</b:Panel>
