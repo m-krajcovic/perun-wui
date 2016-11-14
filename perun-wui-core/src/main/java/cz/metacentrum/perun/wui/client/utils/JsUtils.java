@@ -270,6 +270,17 @@ public class JsUtils {
 		return arrayList;
 	}
 
+	public static final <T extends JavaScriptObject> List<T> listFromJsArray(JsArray jsa) {
+		List<T> list = new ArrayList<>();
+		if (jsa != null) {
+			for (int i = 0; i < jsa.length(); i++) {
+				T str = jsa.get(i).cast();
+				list.add(str);
+			}
+		}
+		return list;
+	}
+
 	/**
 	 * Decode any ASCII string encoded as base64
 	 *

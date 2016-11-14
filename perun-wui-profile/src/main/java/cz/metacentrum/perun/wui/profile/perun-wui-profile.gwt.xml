@@ -37,5 +37,10 @@
 	<source path='model'/>
 	<source path='pages'/>
 	<source path='widgets'/>
+	<source path='manager'/>
+
+	<generate-with class="cz.metacentrum.perun.wui.profile.manager.PerunManagerGenerator">
+		<when-type-assignable class="cz.metacentrum.perun.wui.profile.manager.PerunJsonClientManager" />
+	</generate-with>
 
 </module>

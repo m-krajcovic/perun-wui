@@ -2,6 +2,7 @@ package cz.metacentrum.perun.wui.profile.client;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Element;
+import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -20,6 +21,7 @@ import cz.metacentrum.perun.wui.client.utils.UiUtils;
 import cz.metacentrum.perun.wui.profile.client.resources.PerunProfileTranslation;
 import org.gwtbootstrap3.client.ui.Anchor;
 import org.gwtbootstrap3.client.ui.AnchorListItem;
+import org.gwtbootstrap3.client.ui.Container;
 import org.gwtbootstrap3.client.ui.Image;
 import org.gwtbootstrap3.client.ui.NavPills;
 import org.gwtbootstrap3.client.ui.Navbar;
@@ -63,14 +65,16 @@ public class PerunProfileView extends ViewImpl implements PerunProfilePresenter.
 	@UiField NavbarNav topMenu;
 
 	@UiField AnchorListItem personalXS;
-//	@UiField AnchorListItem organizationsXS;
-//	@UiField AnchorListItem identitiesXS;
-//	@UiField AnchorListItem loginsXS;
-//	@UiField AnchorListItem settingsXS;
+	@UiField AnchorListItem organizationsXS;
+	@UiField AnchorListItem identitiesXS;
+	@UiField AnchorListItem loginsXS;
+	@UiField AnchorListItem settingsXS;
+	@UiField AnchorListItem groupsXS;
 
 	@UiField AnchorListItem logout;
 
 	@UiField NavPills menuPills;
+	@UiField Container container;
 
 	@UiHandler(value="logout")
 	public void logoutClick(ClickEvent event) {
@@ -101,6 +105,7 @@ public class PerunProfileView extends ViewImpl implements PerunProfilePresenter.
 
 		if (PerunConfiguration.isHeaderDisabled()) {
 			menuWrapper.setVisible(false);
+			container.getElement().getStyle().setMarginTop(1, Style.Unit.EM);
 		}
 
 		// put logo

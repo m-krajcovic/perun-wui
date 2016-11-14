@@ -107,4 +107,7 @@ public interface PerunProfileTranslation extends PerunTranslation {
 	@DefaultMessage("E-mail change")
 	String updateEmailModalTitle();
 
+	@DefaultMessage("Loading virtual organizations")
+	String loadingVos();
+
 }
