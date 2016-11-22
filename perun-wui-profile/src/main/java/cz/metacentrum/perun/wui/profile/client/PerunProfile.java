@@ -11,6 +11,7 @@ import com.gwtplatform.mvp.client.gin.DefaultModule;
 import cz.metacentrum.perun.wui.client.PerunPlaceManager;
 import cz.metacentrum.perun.wui.client.PerunRootPresenter;
 import cz.metacentrum.perun.wui.client.resources.ExceptionLogger;
+import cz.metacentrum.perun.wui.client.resources.PerunConfiguration;
 import cz.metacentrum.perun.wui.client.resources.PerunResources;
 import cz.metacentrum.perun.wui.client.utils.Utils;
 import cz.metacentrum.perun.wui.pages.*;

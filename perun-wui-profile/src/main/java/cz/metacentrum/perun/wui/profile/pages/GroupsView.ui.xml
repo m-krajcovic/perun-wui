@@ -11,11 +11,11 @@
 		<b:Heading size="H2" ui:field="pageTitle">
 			<b:Icon ui:field="icon" type="BUILDING_O" fixedWidth="true"/>
 			<b.html:Text text="" ui:field="text"/>
-			<b.html:Small text="{msgRes.menuGroups}" ui:field="small"/>
+			<b.html:Small text="{msgRes.menuOrganizations}" ui:field="small"/>
 		</b:Heading>
 
 
-		<b:Alert text="You are member of following virtual organizations. Click to name to see details."
+		<b:Alert text="{msgRes.memberOfFollowingVos}"
 				 ui:field="paragraph" visible="false" type="INFO" dismissable="true"/>
 		<p:PerunLoader ui:field="loader"/>
 

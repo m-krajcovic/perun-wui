@@ -558,6 +558,22 @@ public final class PerunConfiguration {
 		return SPlogout;
 	}
 
+	public static boolean areOrganizationsDisabled() {
+		return getConfigPropertyBoolean("profile.organizations.disabled");
+	}
+
+	public static boolean areIdentitiesDisabled() {
+		return getConfigPropertyBoolean("profile.identities.disabled");
+	}
+
+	public static boolean areLoginsDisabled() {
+		return getConfigPropertyBoolean("profile.logins.disabled");
+	}
+
+	public static boolean areSettingsDisabled() {
+		return getConfigPropertyBoolean("profile.settings.disabled");
+	}
+
 	private void PerunConfiguration() {
 	}
 

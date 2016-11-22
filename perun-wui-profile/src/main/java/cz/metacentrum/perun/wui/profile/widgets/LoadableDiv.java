@@ -1,11 +1,13 @@
 package cz.metacentrum.perun.wui.profile.widgets;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiConstructor;
 import com.google.gwt.user.client.ui.Composite;
+import cz.metacentrum.perun.wui.profile.client.resources.PerunProfileTranslation;
 import org.gwtbootstrap3.client.shared.event.HiddenEvent;
 import org.gwtbootstrap3.client.shared.event.HiddenHandler;
 import org.gwtbootstrap3.client.shared.event.ShownEvent;
@@ -36,6 +38,8 @@ public class LoadableDiv extends Composite {
 
 	private JsonStringMapper mapper;
 
+	private static PerunProfileTranslation translation = GWT.create(PerunProfileTranslation.class);
+
 	public LoadableDiv(String text, JsonStringMapper mapper, ClickHandler clickHandler) {
 		this(text, mapper);
 		this.mapper = mapper;
@@ -51,7 +55,7 @@ public class LoadableDiv extends Composite {
 	public LoadableDiv(String text) {
 		this();
 		this.text = text;
-		button.setText("Load " + text + " ");
+		button.setText(translation.load(text) + " ");
 	}
 
 	public LoadableDiv() {
@@ -67,38 +71,43 @@ public class LoadableDiv extends Composite {
 	}
 
 	public void setData(List<? extends JavaScriptObject> data) {
-		list.clear();
+		if (data.size() > 0) {
+			list.clear();
 
-		for (int i = 0; i < data.size(); i++) {
-			JavaScriptObject obj = data.get(i);
-			ListGroupItem item = new ListGroupItem();
-			item.setText(mapper.toString(obj));
-			list.add(item);
+			for (int i = 0; i < data.size(); i++) {
+				JavaScriptObject obj = data.get(i);
+				ListGroupItem item = new ListGroupItem();
+				item.setText(mapper.toString(obj));
+				list.add(item);
+			}
+
+			list.getElement().getStyle().setMarginBottom(20, Style.Unit.PX);
+
+			collapseShow(panelCollapse.getElement());
+
+			button.clear();
+			button.setEnabled(true);
+			button.setText(translation.hide(text));
+			button.setDataToggle(Toggle.COLLAPSE);
+			button.setDataTargetWidget(panelCollapse);
+
+			panelCollapse.addHiddenHandler(new HiddenHandler() {
+				@Override
+				public void onHidden(HiddenEvent event) {
+					button.setText(translation.show(text));
+				}
+			});
+
+			panelCollapse.addShownHandler(new ShownHandler() {
+				@Override
+				public void onShown(ShownEvent event) {
+					button.setText(translation.hide(text));
+				}
+			});
+		} else {
+			button.clear();
+			button.setText(translation.zeroFound(text));
 		}
-
-		list.getElement().getStyle().setMarginBottom(20, Style.Unit.PX);
-
-		collapseShow(panelCollapse.getElement());
-
-		button.clear();
-		button.setEnabled(true);
-		button.setText("Hide " + text);
-		button.setDataToggle(Toggle.COLLAPSE);
-		button.setDataTargetWidget(panelCollapse);
-
-		panelCollapse.addHiddenHandler(new HiddenHandler() {
-			@Override
-			public void onHidden(HiddenEvent event) {
-				button.setText("Show " + text);
-			}
-		});
-
-		panelCollapse.addShownHandler(new ShownHandler() {
-			@Override
-			public void onShown(ShownEvent event) {
-				button.setText("Hide " + text);
-			}
-		});
 	}
 
 	public final native void collapseShow(Element e) /*-{

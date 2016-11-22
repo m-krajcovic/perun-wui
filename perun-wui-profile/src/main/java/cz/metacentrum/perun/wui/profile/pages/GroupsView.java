@@ -82,27 +82,9 @@ public class GroupsView extends ViewWithUiHandlers<GroupUiHandlers> implements G
 	}
 
 	@Override
-	public void setMember(Vo vo, Member member) {
-		VoPanel voPanel = panels.getBody(vo);
-		Panel panel = panels.getPanel(vo);
-		Paragraph par = new Paragraph("Membership status: " + member.getMembershipStatus());
-		voPanel.getStatusColumn().add(par);
-		voPanel.setMember(member);
-		switch (voPanel.getMember().getMembershipStatus()) {
-			case "VALID":
-				panel.setType(PanelType.DEFAULT);
-				break;
-			case "EXPIRED":
-				panel.setType(PanelType.WARNING);
-				break;
-			default:
-				panel.setType(PanelType.DANGER);
-		}
-	}
-
-	@Override
 	public void setMember(Vo vo, Member member, Attribute attribute, boolean extend) {
 		VoPanel voPanel = panels.getBody(vo);
+		voPanel.finishLoading();
 		Panel panel = panels.getPanel(vo);
 		Paragraph par = new Paragraph("Membership status: " + member.getMembershipStatus());
 		voPanel.getStatusColumn().add(par);
@@ -123,6 +105,11 @@ public class GroupsView extends ViewWithUiHandlers<GroupUiHandlers> implements G
 		}
 
 
+	}
+
+	@Override
+	public void startLoadingMember(Vo vo) {
+		panels.getBody(vo).startLoading();
 	}
 
 	@Override

@@ -14,6 +14,7 @@ import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 import cz.metacentrum.perun.wui.client.PerunPresenter;
+import cz.metacentrum.perun.wui.client.resources.PerunConfiguration;
 import cz.metacentrum.perun.wui.client.resources.PerunSession;
 import cz.metacentrum.perun.wui.client.utils.JsUtils;
 import cz.metacentrum.perun.wui.client.utils.Utils;
@@ -62,7 +63,11 @@ public class IdentitiesPresenter extends Presenter<IdentitiesPresenter.MyView, I
 
 	@Override
 	public void onReveal() {
-		loadUserExtSources();
+		if (PerunConfiguration.areIdentitiesDisabled()) {
+			placeManager.revealUnauthorizedPlace(PerunProfilePlaceTokens.UNAUTHORIZED);
+		} else {
+			loadUserExtSources();
+		}
 	}
 
 

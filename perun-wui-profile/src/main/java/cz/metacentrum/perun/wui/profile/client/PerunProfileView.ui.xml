@@ -39,11 +39,11 @@
 									<b:AnchorListItem visibleOn="XS" ui:field="personalXS" icon="USER" iconFixedWidth="true" targetHistoryToken="{placeTokens.getPersonal}" >
 										<ui:text from='{trans.menuMyProfile}'/>
 									</b:AnchorListItem>
-									<b:AnchorListItem visibleOn="XS" ui:field="organizationsXS" icon="BUILDING_O" iconFixedWidth="true" targetHistoryToken="{placeTokens.getOrganizations}">
-										<ui:text from='{trans.menuOrganizations}'/>
-									</b:AnchorListItem>
+									<!--<b:AnchorListItem visibleOn="XS" ui:field="organizationsXS" icon="BUILDING_O" iconFixedWidth="true" targetHistoryToken="{placeTokens.getOrganizations}">-->
+										<!--<ui:text from='{trans.menuOrganizations}'/>-->
+									<!--</b:AnchorListItem>-->
 									<b:AnchorListItem visibleOn="XS" ui:field="groupsXS" icon="BUILDING_O" iconFixedWidth="true" targetHistoryToken="{placeTokens.getGroups}">
-										<ui:text from='{trans.menuGroups}'/>
+										<ui:text from='{trans.menuOrganizations}'/>
 									</b:AnchorListItem>
 									<b:AnchorListItem visibleOn="XS" ui:field="identitiesXS" icon="EYE" iconFixedWidth="true" targetHistoryToken="{placeTokens.getIdentities}">
 										<ui:text from='{trans.menuMyIdentities}'/>
@@ -88,11 +88,11 @@
 									<b:AnchorListItem ui:field="personal" icon="USER" iconFixedWidth="true" targetHistoryToken="{placeTokens.getPersonal}" >
 										<ui:text from='{trans.menuMyProfile}'/>
 									</b:AnchorListItem>
-									<b:AnchorListItem ui:field="organizations" icon="BUILDING_O" iconFixedWidth="true" targetHistoryToken="{placeTokens.getOrganizations}">
-										<ui:text from='{trans.menuOrganizations}'/>
-									</b:AnchorListItem>
+									<!--<b:AnchorListItem ui:field="organizations" icon="BUILDING_O" iconFixedWidth="true" targetHistoryToken="{placeTokens.getOrganizations}">-->
+										<!--<ui:text from='{trans.menuOrganizations}'/>-->
+									<!--</b:AnchorListItem>-->
 									<b:AnchorListItem ui:field="groups" icon="BUILDING_O" iconFixedWidth="true" targetHistoryToken="{placeTokens.getGroups}">
-										<ui:text from='{trans.menuGroups}'/>
+										<ui:text from='{trans.menuOrganizations}'/>
 									</b:AnchorListItem>
 									<b:AnchorListItem ui:field="identities" icon="EYE" iconFixedWidth="true" targetHistoryToken="{placeTokens.getIdentities}">
 										<ui:text from='{trans.menuMyIdentities}'/>

@@ -15,6 +15,7 @@ import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 import cz.metacentrum.perun.wui.client.PerunPresenter;
+import cz.metacentrum.perun.wui.client.resources.PerunConfiguration;
 import cz.metacentrum.perun.wui.client.resources.PerunSession;
 import cz.metacentrum.perun.wui.client.utils.JsUtils;
 import cz.metacentrum.perun.wui.json.JsonEvents;
@@ -56,13 +57,13 @@ public class GroupsPresenter extends Presenter<GroupsPresenter.MyView, GroupsPre
 
 		void setResources(Vo vo, List<Resource> resources);
 
-		void setMember(Vo vo, Member member);
-
 		void onLoadingStart();
 
 		void onError(PerunException ex, JsonEvents retry);
 
 		void setMember(Vo vo, Member member, Attribute attribute, boolean extend);
+
+		void startLoadingMember(Vo vo);
 	}
 
 	//	private UsersManager usersManager = GWT.create(UsersManager.class);
@@ -89,8 +90,12 @@ public class GroupsPresenter extends Presenter<GroupsPresenter.MyView, GroupsPre
 
 	@Override
 	protected void onReveal() {
-		userId = getUserId();
-		loadVos();
+		if (PerunConfiguration.areOrganizationsDisabled()) {
+			placeManager.revealUnauthorizedPlace(PerunProfilePlaceTokens.UNAUTHORIZED);
+		} else {
+			userId = getUserId();
+			loadVos();
+		}
 	}
 
 	@Override
@@ -170,7 +175,7 @@ public class GroupsPresenter extends Presenter<GroupsPresenter.MyView, GroupsPre
 
 			@Override
 			public void onLoadingStart() {
-
+				getView().startLoadingMember(vo);
 			}
 		});
 	}
