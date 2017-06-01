@@ -18,6 +18,9 @@ public interface PerunProfileTranslation extends PerunTranslation {
 	@DefaultMessage("Virtual organizations")
 	public String menuOrganizations();
 
+	@DefaultMessage("Groups")
+	public String menuGroups();
+
 	@DefaultMessage("My identities")
 	public String menuMyIdentities();
 
@@ -104,4 +107,24 @@ public interface PerunProfileTranslation extends PerunTranslation {
 	@DefaultMessage("E-mail change")
 	String updateEmailModalTitle();
 
+	@DefaultMessage("Loading virtual organizations")
+	String loadingVos();
+
+	@DefaultMessage("Loading VO details")
+	String loadingVo();
+
+	@DefaultMessage("Show {0}")
+	String show(String text);
+
+	@DefaultMessage("Hide {0}")
+	String hide(String text);
+
+	@DefaultMessage("Load {0}")
+	String load(String text);
+
+	@DefaultMessage("No {0} found")
+	String zeroFound(String text);
+
+	@DefaultMessage("You are member of following virtual organizations. Click to name to see details.")
+	String memberOfFollowingVos();
 }

@@ -1,12 +1,13 @@
 package cz.metacentrum.perun.wui.profile.client;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.Element;
+import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.DOM;
-import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.FocusPanel;
 import com.google.gwt.user.client.ui.IsWidget;
@@ -20,6 +21,7 @@ import cz.metacentrum.perun.wui.client.utils.UiUtils;
 import cz.metacentrum.perun.wui.profile.client.resources.PerunProfileTranslation;
 import org.gwtbootstrap3.client.ui.Anchor;
 import org.gwtbootstrap3.client.ui.AnchorListItem;
+import org.gwtbootstrap3.client.ui.Container;
 import org.gwtbootstrap3.client.ui.Image;
 import org.gwtbootstrap3.client.ui.NavPills;
 import org.gwtbootstrap3.client.ui.Navbar;
@@ -37,42 +39,69 @@ import java.util.Objects;
  *
  * @author Pavel Zlámal <zlamal@cesnet.cz>
  */
-public class PerunProfileView extends ViewImpl implements PerunProfilePresenter.MyView{
+public class PerunProfileView extends ViewImpl implements PerunProfilePresenter.MyView {
 
-	interface PerunUserProfileViewUiBinder extends UiBinder<Widget, PerunProfileView> {}
+	interface PerunUserProfileViewUiBinder extends UiBinder<Widget, PerunProfileView> {
+	}
 
-	@UiField Div pageContent;
+	@UiField
+	Div pageContent;
 
 	private PerunProfileTranslation translation = GWT.create(PerunProfileTranslation.class);
 
-	@UiField NavbarCollapse collapse;
+	@UiField
+	NavbarCollapse collapse;
 
-	@UiField FocusPanel collapseClickHandler;
+	@UiField
+	FocusPanel collapseClickHandler;
 
-	@UiField Navbar menuWrapper;
-	@UiField Span brand;
-	@UiField Div logoWrapper;
-	@UiField static NavbarHeader navbarHeader;
+	@UiField
+	Navbar menuWrapper;
+	@UiField
+	Span brand;
+	@UiField
+	Div logoWrapper;
+	@UiField
+	static NavbarHeader navbarHeader;
 
-	@UiField AnchorListItem topMenuMyProfile;
-	@UiField AnchorListItem personal;
-//	@UiField AnchorListItem organizations;
-//	@UiField AnchorListItem identities;
-//	@UiField AnchorListItem logins;
-//	@UiField AnchorListItem settings;
-	@UiField NavbarNav topMenu;
+	@UiField
+	AnchorListItem topMenuMyProfile;
+	@UiField
+	AnchorListItem personal;
+	//	@UiField AnchorListItem organizations;
+	@UiField
+	AnchorListItem identities;
+	@UiField
+	AnchorListItem logins;
+	@UiField
+	AnchorListItem settings;
+	@UiField
+	AnchorListItem groups;
 
-	@UiField AnchorListItem personalXS;
-//	@UiField AnchorListItem organizationsXS;
-//	@UiField AnchorListItem identitiesXS;
-//	@UiField AnchorListItem loginsXS;
-//	@UiField AnchorListItem settingsXS;
+	@UiField
+	NavbarNav topMenu;
 
-	@UiField AnchorListItem logout;
+	@UiField
+	AnchorListItem personalXS;
+	//	@UiField AnchorListItem organizationsXS;
+	@UiField
+	AnchorListItem identitiesXS;
+	@UiField
+	AnchorListItem loginsXS;
+	@UiField
+	AnchorListItem settingsXS;
+	@UiField
+	AnchorListItem groupsXS;
 
-	@UiField NavPills menuPills;
+	@UiField
+	AnchorListItem logout;
 
-	@UiHandler(value="logout")
+	@UiField
+	NavPills menuPills;
+	@UiField
+	Container container;
+
+	@UiHandler(value = "logout")
 	public void logoutClick(ClickEvent event) {
 		History.newItem("logout");
 	}
@@ -81,9 +110,9 @@ public class PerunProfileView extends ViewImpl implements PerunProfilePresenter.
 	public void setActiveMenuItem(String anchor) {
 
 		int count = menuPills.getWidgetCount();
-		for (int i=0; i < count; i++) {
+		for (int i = 0; i < count; i++) {
 			if (menuPills.getWidget(i) instanceof AnchorListItem) {
-				AnchorListItem item = (AnchorListItem)menuPills.getWidget(i);
+				AnchorListItem item = (AnchorListItem) menuPills.getWidget(i);
 				if (Objects.equals(anchor, item.getTargetHistoryToken())) {
 					item.setActive(true);
 				} else {
@@ -100,7 +129,40 @@ public class PerunProfileView extends ViewImpl implements PerunProfilePresenter.
 		initWidget(binder.createAndBindUi(this));
 
 		if (PerunConfiguration.isHeaderDisabled()) {
-			menuWrapper.setVisible(false);
+			menuWrapper.removeFromParent();
+			container.getElement().getStyle().setMarginTop(1, Style.Unit.EM);
+		}
+
+		if (PerunConfiguration.isFooterDisabled()) {
+			Element footer = DOM.getElementById("perun-footer");
+			if (footer != null) {
+				footer.removeFromParent();
+			}
+		}
+
+		if (PerunConfiguration.areIdentitiesDisabled()) {
+			identities.removeFromParent();
+			identitiesXS.removeFromParent();
+		}
+
+		if (PerunConfiguration.areOrganizationsDisabled()) {
+			groups.removeFromParent();
+			groupsXS.removeFromParent();
+		}
+
+		if (PerunConfiguration.areSettingsDisabled()) {
+			settings.removeFromParent();
+			settingsXS.removeFromParent();
+		}
+
+		if (PerunConfiguration.areLoginsDisabled()) {
+			logins.removeFromParent();
+			loginsXS.removeFromParent();
+		}
+
+		String brandProfileTitle = PerunConfiguration.getBrandProfileTitle();
+		if (brandProfileTitle != null) {
+			brand.setText(brandProfileTitle);
 		}
 
 		// put logo

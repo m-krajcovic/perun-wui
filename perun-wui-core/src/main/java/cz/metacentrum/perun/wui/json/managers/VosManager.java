@@ -1,10 +1,8 @@
 package cz.metacentrum.perun.wui.json.managers;
 
 import com.google.gwt.http.client.Request;
-import com.google.gwt.http.client.RequestBuilder;
-import com.google.gwt.json.client.JSONNumber;
-import com.google.gwt.json.client.JSONObject;
-import cz.metacentrum.perun.wui.json.*;
+import cz.metacentrum.perun.wui.json.JsonEvents;
+import cz.metacentrum.perun.wui.json.JsonClient;
 import cz.metacentrum.perun.wui.model.beans.Vo;
 
 /**
